@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Workout Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='gym-logo.png') }}" alt="Gym Logo">
+            <h1>Gym Workout Planner</h1>
+        </header>
+        <form action="{{ url_for('generate_workout') }}" method="post">
+            <div class="level-selector">
+                <h2>Choose Your Level</h2>
+                <select name="level" id="level-select">
+                    <option value="">Select a level</option>
+                    {% for level in levels %}
+                        <option value="{{ level }}">{{ level }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="workout-planner">
+                <h2>Workout Planner</h2>    
+                <label for="muscle-group">Muscle Group:</label>
+                <select name="muscle_to_train" id="muscle-group">
+                    <option value="">Select a muscle group</option>
+                    {% for bodypart in bodyparts %}
+                        <option value="{{ bodypart }}">{{ bodypart }}</option>
+                    {% endfor %}
+                </select>
+                <label for="num-exercises">Number of Exercises:</label>
+                <input type="number" name="no_of_exercises" id="num-exercises" min="1" max="5" value="3">
+                <button type="submit">Generate Workout</button>
+            </div>
+        </form>
+        <footer>
+            <p>&copy; Naman Gym Workout Planner</p>
+        </footer>
+    </div>
+</body>
+</html>

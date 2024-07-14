@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Workout Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='gym-logo.png') }}" alt="Gym Logo">
+            <h1>Your Workout Plan</h1>
+        </header>
+        <div class="workout-list">
+            {% if exercises %}
+                <ul>
+                    {% for exercise in exercises %}
+                        <li>{{ exercise['Title'] }} - {{ exercise['Rating'] }} Stars</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No exercises found for the selected criteria.</p>
+            {% endif %}
+        </div>
+        <footer>
+            <p>&copy; Naman Gym Workout Planner</p>
+        </footer>
+    </div>
+</body>
+</html>
